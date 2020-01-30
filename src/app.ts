@@ -10,17 +10,15 @@ function showHello(divName: string, name: string) {
 enum Category {Javascript, CSS, HTML, TypeScript, Angular}
 
 function getAllBooks(): readonly object[] {
-    const books = <const>[
-        {title: 'Refactoring JavaScript', category: Category.Javascript, author: 'Evan Burchard', available: true},
-        {title: 'JavaScript Testing', category: Category.Javascript, author: 'Liang Yuxian Eugene', available: false},
-        {title: 'CSS Secrets', category: Category.CSS, author: 'Lea Verou', available: true},
-        {title: 'Mastering JavaScript Object-Oriented Programming', category: Category.Javascript, author: 'Andrea Chiarelli', available: true}
+    return <const>[
+        {id: 1, title: 'Refactoring JavaScript', category: Category.Javascript, author: 'Evan Burchard', available: true},
+        {id: 2, title: 'JavaScript Testing', category: Category.Javascript, author: 'Liang Yuxian Eugene', available: false},
+        {id: 3, title: 'CSS Secrets', category: Category.CSS, author: 'Lea Verou', available: true},
+        {id: 4, title: 'Mastering JavaScript Object-Oriented Programming', category: Category.Javascript, author: 'Andrea Chiarelli', available: true}
     ];
-
-    return books;
 }
 
-function logFirstAvailable(books: readonly object[]): void {
+function logFirstAvailable(books: readonly object[] = getAllBooks()): void {
     const booksCount: number = books.length;
     let title: string = '';
 
@@ -35,7 +33,7 @@ function logFirstAvailable(books: readonly object[]): void {
     console.log(`First available book is ${title}`)
 }
 
-function getBookTitlesByCategory(category: Category): Array<string> {
+function getBookTitlesByCategory(category: Category = Category.Javascript): Array<string> {
     const books = getAllBooks();
     const titles = [] as string[];
 
@@ -71,7 +69,131 @@ function calcTotalPages(): bigint {
     }, BigInt(0));
 }
 
-// Task 02.01
+
+function getBookByID(id: number): any | undefined {
+    const books = getAllBooks();
+    return books.find(book => book['id'] === id);
+}
+
+function createCustomerID(name: string, id: number): string {
+    return `${name}${id}`;
+}
+
+function createCustomer(name: string, age?: number, city?: string): void {
+    console.log(`Creating customer ${name}`);
+
+    if (age) {
+        console.log(`Age: ${age}`);
+    }
+
+    if (city) {
+        console.log(`City: ${city}`);
+    }
+}
+
+function checkoutBooks(customer: string, ...bookIDs: number[]): string[] {
+    console.log(`checking out books for ${customer}`);
+
+    const titles: string[] = [];
+
+    for (const id of bookIDs) {
+        const book: any = getBookByID(id);
+        if (book && book.available) {
+            titles.push(book.title);
+        }
+    }
+
+    return titles;
+}
+
+
+function getTitles(author: string): string[];
+function getTitles(available: boolean): string[];
+function getTitles(id: number, available: boolean): string[];
+function getTitles(...args: any[]): string[] {
+    const books: ReadonlyArray<any> = getAllBooks();
+
+    if (args.length === 1) {
+        const [arg] = args;
+
+        if (typeof arg === 'string') {
+            return books.filter(book => book.author === arg).map(book => book.title);
+        } else if (typeof arg === 'boolean') {
+            return books.filter(book => book.available === arg).map(book => book.title);
+        }
+    } else if (args.length === 2) {
+        const [id, available] = args;
+
+        if (typeof id === "number" && typeof available === "boolean") {
+            return books.filter(book => book.id === id && book.available === available).map(book => book.title);
+        }
+    }
+}
+
+
+function assertStringValue(val: any): asserts val is string {
+    if (typeof val !== 'string') {
+        throw new Error('value should be a string');
+    }
+}
+
+function bookTitleTransform(title: any): string {
+    assertStringValue(title);
+
+    return title.split('').reverse().join('');
+}
+
+// todo Task 03.05
+
+// const title1 = bookTitleTransform('Title');
+// console.log(title1);
+// // const title2 = bookTitleTransform(132);
+// console.log(title2);
+
+// todo Task 03.04
+
+// const checkedOutBooks = getTitles(1,false);
+// console.log(checkedOutBooks);
+
+// todo Task 03.03
+
+// createCustomer('Tatiana');
+// createCustomer('Tatiana', 30);
+// createCustomer('Tatiana', 15, 'Minsk');
+// const books = getBookTitlesByCategory();
+// console.log(books);
+
+// logFirstAvailable();
+
+// const myBooks = checkoutBooks('Ann', 1, 2, 4);
+// console.log(myBooks);
+
+
+// todo Task 03.02
+
+// let myID = createCustomerID('Ann', 10);
+// console.log(myID);
+//
+// let idGenerator: (name: string, id: number) => string;
+// idGenerator = createCustomerID;
+// myID = idGenerator('Eva', 20);
+// console.log(myID);
+//
+// idGenerator = (name: string, id: number) => `${id}${name}`;
+// myID = idGenerator('Daria', 30);
+// console.log(myID);
+
+
+// todo Task 03.01
+
+// const titles = getBookTitlesByCategory(Category.Javascript);
+// titles.forEach(title => console.log(title));
+
+// const book = getBookByID(1);
+// console.log(book);
+
+
+// todo Task 02.01
 
 //logFirstAvailable(getAllBooks());
 
