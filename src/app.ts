@@ -9,13 +9,23 @@ function showHello(divName: string, name: string) {
 
 enum Category {Javascript, CSS, HTML, TypeScript, Angular}
 
-function getAllBooks(): readonly object[] {
-    return <const>[
+interface Book {
+    id: number;
+    title: string;
+    author: string;
+    available: boolean;
+    category: Category;
+}
+
+function getAllBooks(): readonly Book[] {
+    const books: readonly Book[] = <const>[
         {id: 1, title: 'Refactoring JavaScript', category: Category.Javascript, author: 'Evan Burchard', available: true},
         {id: 2, title: 'JavaScript Testing', category: Category.Javascript, author: 'Liang Yuxian Eugene', available: false},
         {id: 3, title: 'CSS Secrets', category: Category.CSS, author: 'Lea Verou', available: true},
         {id: 4, title: 'Mastering JavaScript Object-Oriented Programming', category: Category.Javascript, author: 'Andrea Chiarelli', available: true}
     ];
+
+    return books;
 }
 
 function logFirstAvailable(books: readonly object[] = getAllBooks()): void {
@@ -69,8 +79,7 @@ function calcTotalPages(): bigint {
     }, BigInt(0));
 }
 
-
-function getBookByID(id: number): any | undefined {
+function getBookByID(id: number): Book | undefined {
     const books = getAllBooks();
     return books.find(book => book['id'] === id);
 }
@@ -142,6 +151,15 @@ function bookTitleTransform(title: any): string {
 
     return title.split('').reverse().join('');
 }
+
+function printBook(book: Book): void {
+    console.log(`${book.title} by ${book.author}`);
+}
+
+
+// todo Task 04.01
+
+printBook(getBookByID(1));
 
 // todo Task 03.05
 
