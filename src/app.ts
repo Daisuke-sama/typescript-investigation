@@ -156,6 +156,57 @@ function printBook(book: Book): void {
     console.log(`${book.title} by ${book.author}`);
 }
 
+class ReferenceItem {
+    title: string;
+    year: number;
+    private _publisher: string;
+    static department: string = 'Research Dep';
+
+    get publisher(): string {
+        return this._publisher.toUpperCase();
+    }
+
+    set publisher(newPublisher) {
+        this._publisher = newPublisher;
+    }
+
+    constructor(public newTitle: string, private newYear: number) {
+        console.log('Creating a new ReferenceItem...');
+        this.title = newTitle;
+        this.year = newYear;
+    }
+
+    printItem(): void {
+        console.log(`${this.title} was published in ${this.year}`);
+        console.log(`Department: ${ReferenceItem.department}`);
+    }
+}
+
+class Encyclopedia extends ReferenceItem {
+    constructor(newTitle: string, newYear: number, public edition: number) {
+        super(newTitle, newYear);
+    }
+
+    printItem(): void {
+        super.printItem();
+        console.log(`Edition: ${this.edition} (${this.year})`);
+    }
+}
+
+
+// todo task 05.02
+const refBook = new Encyclopedia('Hi, TS', 2020, 1);
+refBook.printItem();
+console.log(refBook);
+
+
+// todo Task 05.01
+const ref = new ReferenceItem('Hello, Typescript', 2020);
+ref.printItem();
+ref.publisher = 'Random Publisher';
+console.log(ref);
+console.log(ref.publisher);
+
 
 // todo Task 04.01
 
