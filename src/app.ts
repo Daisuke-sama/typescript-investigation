@@ -17,6 +17,14 @@ interface Book {
     category: Category;
 }
 
+interface Librarian {
+    department: string;
+    name: string;
+    email: string;
+
+    assistCustomer(custName: string): void;
+}
+
 function getAllBooks(): readonly Book[] {
     const books: readonly Book[] = <const>[
         {id: 1, title: 'Refactoring JavaScript', category: Category.Javascript, author: 'Evan Burchard', available: true},
@@ -156,7 +164,7 @@ function printBook(book: Book): void {
     console.log(`${book.title} by ${book.author}`);
 }
 
-class ReferenceItem {
+abstract class ReferenceItem {
     // title: string;
     // year: number;
     private _publisher: string;
@@ -180,6 +188,8 @@ class ReferenceItem {
         console.log(`${this.title} was published in ${this.year}`);
         console.log(`Department: ${ReferenceItem.department}`);
     }
+
+    abstract printCitation(): void;
 }
 
 class Encyclopedia extends ReferenceItem {
@@ -191,21 +201,46 @@ class Encyclopedia extends ReferenceItem {
         super.printItem();
         console.log(`Edition: ${this.edition} (${this.year})`);
     }
+
+    printCitation(): void {
+        console.log('I am a citation');
+    }
+}
+
+class UniversityLibrarian implements Librarian {
+    name: string;
+    email: string;
+    department: string;
+
+    assistCustomer(custName: string): void {
+        console.log(`${this.name} is assisting ${custName}`);
+    }
 }
 
 
+// todo task 05.04
+const favoriteLibrarian: Librarian = new UniversityLibrarian();
+favoriteLibrarian.name = 'Jim';
+favoriteLibrarian.assistCustomer('Paul');
+
+
+// todo task 05.03
+// const enc = new Encyclopedia('Title', 2030, 1);
+// enc.printCitation();
+
+
 // todo task 05.02
-const refBook = new Encyclopedia('Hi, TS', 2020, 1);
-refBook.printItem();
-console.log(refBook);
+// const refBook = new Encyclopedia('Hi, TS', 2020, 1);
+// refBook.printItem();
+// console.log(refBook);
 
 
 // todo Task 05.01
-const ref = new ReferenceItem('Hello, Typescript', 2020);
-ref.printItem();
-ref.publisher = 'Random Publisher';
-console.log(ref);
-console.log(ref.publisher);
+// const ref = new ReferenceItem('Hello, Typescript', 2020);
+// ref.printItem();
+// ref.publisher = 'Random Publisher';
+// console.log(ref);
+// console.log(ref.publisher);
 
 
 // todo Task 04.01
