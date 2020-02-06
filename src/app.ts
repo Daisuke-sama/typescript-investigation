@@ -157,8 +157,8 @@ function printBook(book: Book): void {
 }
 
 class ReferenceItem {
-    title: string;
-    year: number;
+    // title: string;
+    // year: number;
     private _publisher: string;
     static department: string = 'Research Dep';
 
@@ -170,10 +170,10 @@ class ReferenceItem {
         this._publisher = newPublisher;
     }
 
-    constructor(public newTitle: string, private newYear: number) {
+    constructor(public title: string, protected year: number) {
         console.log('Creating a new ReferenceItem...');
-        this.title = newTitle;
-        this.year = newYear;
+        this.title = title;
+        this.year = year;
     }
 
     printItem(): void {
