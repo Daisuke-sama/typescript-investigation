@@ -15,6 +15,13 @@ interface Book {
     author: string;
     available: boolean;
     category: Category;
+    pages?: number;
+    // markDamaged?: (reason: string) => void;
+    markDamaged?: DamageLogger;
+}
+
+interface DamageLogger {
+    (reason: string): void;
 }
 
 interface Librarian {
@@ -243,9 +250,22 @@ favoriteLibrarian.assistCustomer('Paul');
 // console.log(ref.publisher);
 
 
-// todo Task 04.01
+//todo Task 04.02
+const logDamage: DamageLogger = (reason: string) => console.log(`Damaged: ${reason}`);
+logDamage('missing back cover');
 
-printBook(getBookByID(1));
+// todo Task 04.01
+// const myBook: Book = {
+//     id: 5,
+//     title: 'Color, Backgrounds, and Gradients',
+//     author: 'Eric A. Meyer',
+//     available: true,
+//     category: Category.CSS,
+//     pages: 200,
+//     markDamaged: (reason:string) => console.log(`Damaged: ${reason}`)
+// };
+// printBook(myBook);
+// myBook.markDamaged('missing back cover');
 
 // todo Task 03.05
 
