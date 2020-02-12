@@ -38,8 +38,10 @@ interface Librarian extends Person {
     // name: string;
     // email: string;
 
-    assistCustomer: (custName: string) => void;
+    assistCustomer(custName: string): void;
 }
+
+type BookProperties = keyof Book;
 
 function getAllBooks(): readonly Book[] {
     const books: readonly Book[] = <const>[
@@ -180,6 +182,14 @@ function printBook(book: Book): void {
     console.log(`${book.title} by ${book.author}`);
 }
 
+function getBookProp(book: Book, prop: BookProperties): any {
+    if (typeof book[prop] === 'function') {
+        return book[prop]['name'];
+        return (book[prop] as Function).name;
+    }
+    return book[prop];
+}
+
 abstract class ReferenceItem {
     // title: string;
     // year: number;
@@ -259,13 +269,19 @@ class UniversityLibrarian implements Librarian {
 // console.log(ref.publisher);
 
 
+// todo Task 04.05
+// console.log(getBookProp(getAllBooks()[0], 'title'));
+// console.log(getBookProp(getAllBooks()[0], 'markDamaged'));
+// // console.log(getBookProp(getAllBooks()[0], 'abc'));
+
+
 // todo Task 04.04
-const offer: any = {
-    book: {
-        title: 'Essential TypeScript'
-    }
-};
-console.log(offer.book?.magazine);
+// const offer: any = {
+//     book: {
+//         title: 'Essential TypeScript'
+//     }
+// };
+// console.log(offer.book?.magazine);
 
 
 // todo Task 04.03
