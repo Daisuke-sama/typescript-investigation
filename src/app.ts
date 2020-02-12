@@ -24,12 +24,21 @@ interface DamageLogger {
     (reason: string): void;
 }
 
-interface Librarian {
-    department: string;
+interface Person {
     name: string;
     email: string;
+}
 
-    assistCustomer(custName: string): void;
+interface Author extends Person {
+    numBooksPublished: number;
+}
+
+interface Librarian extends Person {
+    department: string;
+    // name: string;
+    // email: string;
+
+    assistCustomer: (custName: string) => void;
 }
 
 function getAllBooks(): readonly Book[] {
@@ -226,9 +235,9 @@ class UniversityLibrarian implements Librarian {
 
 
 // todo task 05.04
-const favoriteLibrarian: Librarian = new UniversityLibrarian();
-favoriteLibrarian.name = 'Jim';
-favoriteLibrarian.assistCustomer('Paul');
+// const favoriteLibrarian: Librarian = new UniversityLibrarian();
+// favoriteLibrarian.name = 'Jim';
+// favoriteLibrarian.assistCustomer('Paul');
 
 
 // todo task 05.03
@@ -250,9 +259,34 @@ favoriteLibrarian.assistCustomer('Paul');
 // console.log(ref.publisher);
 
 
-//todo Task 04.02
-const logDamage: DamageLogger = (reason: string) => console.log(`Damaged: ${reason}`);
-logDamage('missing back cover');
+// todo Task 04.04
+const offer: any = {
+    book: {
+        title: 'Essential TypeScript'
+    }
+};
+console.log(offer.book?.magazine);
+
+
+// todo Task 04.03
+// const favouriteAuthor: Author = {
+//     name: 'Ann',
+//     email: 'add@sdgf.fd',
+//     numBooksPublished: 10,
+// };
+//
+// const favouriteLibrarian: Librarian = {
+//     name: 'Boris',
+//     email: 'boris@dep.com',
+//     department: 'Classical Literature',
+//     assistCustomer(name: string) {
+//         console.log(`Assist: ${name}`);
+//     }
+// };
+
+// todo Task 04.02
+// const logDamage: DamageLogger = (reason: string) => console.log(`Damaged: ${reason}`);
+// logDamage('missing back cover');
 
 // todo Task 04.01
 // const myBook: Book = {
