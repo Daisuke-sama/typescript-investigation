@@ -13,6 +13,15 @@ function showHello(divName: string, name: string) {
 
 // ========================================================================
 
+// todo Task 06.05
+import('./classes').then(module => {
+    const reader = new module.Reader();
+    reader.name = 'Kate';
+    reader.take(getAllBooks()[2]);
+
+    console.log(reader);
+});
+
 
 // todo Task 05.05
 const personBook: PersonBook = {
@@ -40,9 +49,9 @@ console.log(personBook);
 
 // todo task 05.02
 // const refBook = new Encyclopedia('Hi, TS', 2020, 1);
-const refBook = new RefBook('Hi, TS', 2020, 1);
-refBook.printItem();
-console.log(refBook);
+// const refBook = new RefBook('Hi, TS', 2020, 1);
+// refBook.printItem();
+// console.log(refBook);
 
 
 // todo Task 05.01

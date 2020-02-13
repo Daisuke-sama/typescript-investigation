@@ -12,7 +12,7 @@ abstract class ReferenceItem {
         this._publisher = newPublisher;
     }
 
-    constructor(public title: string, protected year: number) {
+    constructor(public title: string, public year: number) {
         console.log('Creating a new ReferenceItem...');
         this.title = title;
         this.year = year;
