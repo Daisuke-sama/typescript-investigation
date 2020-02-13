@@ -1,6 +1,6 @@
+import {ReferenceItem, RefBook} from "./classes";
 import {PersonBook} from "./types";
 import {Category} from "./enums";
-import {ReferenceItem} from "./classes";
 import {getAllBooks} from "./functions";
 import {Logger} from "./interfaces";
 
@@ -12,23 +12,6 @@ function showHello(divName: string, name: string) {
 }
 
 // ========================================================================
-
-
-class Encyclopedia extends ReferenceItem {
-    constructor(newTitle: string, newYear: number, public edition: number) {
-        super(newTitle, newYear);
-    }
-
-    printItem(): void {
-        super.printItem();
-        console.log(`Edition: ${this.edition} (${this.year})`);
-    }
-
-    printCitation(): void {
-        console.log('I am a citation');
-    }
-}
-
 
 
 // todo Task 05.05
@@ -57,8 +40,9 @@ console.log(personBook);
 
 // todo task 05.02
 // const refBook = new Encyclopedia('Hi, TS', 2020, 1);
-// refBook.printItem();
-// console.log(refBook);
+const refBook = new RefBook('Hi, TS', 2020, 1);
+refBook.printItem();
+console.log(refBook);
 
 
 // todo Task 05.01
