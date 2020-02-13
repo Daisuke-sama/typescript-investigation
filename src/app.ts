@@ -1,8 +1,8 @@
 import {ReferenceItem, RefBook} from "./classes";
 import {PersonBook} from "./types";
 import {Category} from "./enums";
-import {getAllBooks} from "./functions";
-import {Logger} from "./interfaces";
+import {getAllBooks, purge} from "./functions";
+import {Logger, Book} from "./interfaces";
 
 showHello('greeting', 'TypeScript');
 
@@ -13,27 +13,41 @@ function showHello(divName: string, name: string) {
 
 // ========================================================================
 
-// todo Task 06.05
-import('./classes').then(module => {
-    const reader = new module.Reader();
-    reader.name = 'Kate';
-    reader.take(getAllBooks()[2]);
+// todo Task 07.01
+const inventory: Array<Book> = [
+    { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: Category.Software },
+    { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.Software },
+    { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.Software },
+    { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software }
+];
+let result = purge<Book>(inventory);
+console.log(result);
 
-    console.log(reader);
-});
+const result2 = purge([1,2,3,4,5]);
+console.log(result2);
+
+
+// todo Task 06.05
+// import('./classes').then(module => {
+//     const reader = new module.Reader();
+//     reader.name = 'Kate';
+//     reader.take(getAllBooks()[2]);
+//
+//     console.log(reader);
+// });
 
 
 // todo Task 05.05
-const personBook: PersonBook = {
-    name: 'Raman',
-    email: 'raman@abc.com',
-    id: 12,
-    title: 'Good to know',
-    author: 'Paul B.',
-    available: true,
-    category: Category.Javascript,
-};
-console.log(personBook);
+// const personBook: PersonBook = {
+//     name: 'Raman',
+//     email: 'raman@abc.com',
+//     id: 12,
+//     title: 'Good to know',
+//     author: 'Paul B.',
+//     available: true,
+//     category: Category.Javascript,
+// };
+// console.log(personBook);
 
 
 // todo task 05.04
