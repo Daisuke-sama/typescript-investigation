@@ -42,6 +42,8 @@ interface Librarian extends Person {
 }
 
 type BookProperties = keyof Book;
+type PersonBook = Person & Book;   // union -> creation of a new type from intersection
+type BookOrUndefined = Book | undefined;  // union -> creation of a new type from intersection
 
 function getAllBooks(): readonly Book[] {
     const books: readonly Book[] = <const>[
@@ -105,7 +107,7 @@ function calcTotalPages(): bigint {
     }, BigInt(0));
 }
 
-function getBookByID(id: number): Book | undefined {
+function getBookByID(id: number): BookOrUndefined {
     const books = getAllBooks();
     return books.find(book => book['id'] === id);
 }
@@ -242,6 +244,19 @@ class UniversityLibrarian implements Librarian {
         console.log(`${this.name} is assisting ${custName}`);
     }
 }
+
+
+// todo Task 05.05
+const personBook: PersonBook = {
+    name: 'Raman',
+    email: 'raman@abc.com',
+    id: 12,
+    title: 'Good to know',
+    author: 'Paul B.',
+    available: true,
+    category: Category.Javascript,
+};
+console.log(personBook);
 
 
 // todo task 05.04
