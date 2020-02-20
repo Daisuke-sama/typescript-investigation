@@ -1,6 +1,7 @@
 import {BookRequiredFields, CreateCustomerFunctionType, UpdatedBook} from "./types";
 import {Category} from "./enums";
 import {createCustomer} from "./functions";
+import {UniversityLibrarian} from "./classes";
 
 showHello('greeting', 'TypeScript');
 
@@ -10,6 +11,13 @@ function showHello(divName: string, name: string) {
 }
 
 // ========================================================================
+
+
+// todo Task 08.02
+const universityLibrarian = new UniversityLibrarian();
+console.log(universityLibrarian);
+universityLibrarian.name = 'Kate';
+universityLibrarian['printLibrarian']();
 
 
 // todo 07.05
