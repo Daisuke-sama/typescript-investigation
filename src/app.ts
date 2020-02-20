@@ -1,8 +1,6 @@
-import {ReferenceItem, RefBook, Shelf} from "./classes";
-import {PersonBook} from "./types";
+import {BookRequiredFields, CreateCustomerFunctionType, UpdatedBook} from "./types";
 import {Category} from "./enums";
-import {getAllBooks, purge} from "./functions";
-import {Logger, Book, Magazine} from "./interfaces";
+import {createCustomer} from "./functions";
 
 showHello('greeting', 'TypeScript');
 
@@ -13,27 +11,62 @@ function showHello(divName: string, name: string) {
 
 // ========================================================================
 
-// todo Task 07.02
-const inventory: Array<Book> = [
-    { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: Category.Software },
-    { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.Software },
-    { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.Software },
-    { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software }
-];
-const bookShelf = new Shelf<Book>();
-inventory.forEach(book => bookShelf.add(book));
-const firstBook = bookShelf.getFirst();
-console.log(firstBook);
 
-const magazines: Array<Magazine> = [
-    { title: 'Programming Language Monthly', publisher: 'Code Mags' },
-    { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
-    { title: 'Five Points', publisher: 'GSU' }
-];
-const magazineShelf = new Shelf<Magazine>();
-magazines.forEach(mag => magazineShelf.add(mag));
-const firstMag = magazineShelf.getFirst();
-console.log(firstMag.title);
+// todo 07.05
+// const params: Parameters<CreateCustomerFunctionType> = ['Ann', 30];
+// createCustomer(...params);
+
+
+// todo 07.04
+// const book: BookRequiredFields = {
+//     id: 1,
+//     author: 'Vasilii',
+//     available: false,
+//     category: Category.HTML,
+//     title: 'Ok Title',
+//     pages: 200,
+//     markDamaged: null
+// };
+//
+// const updatedBook: UpdatedBook = {
+//     id: 2,
+//     title: 'Go with it',
+// };
+
+// todo 07.03
+
+// const magazines: Array<Magazine> = [
+//     { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+//     { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
+//     { title: 'Five Points', publisher: 'GSU' }
+// ];
+// const magazineShelf = new Shelf<Magazine>();
+// magazines.forEach(mag => magazineShelf.add(mag));
+//
+// magazineShelf.printTitle();
+
+
+// todo Task 07.02
+// const inventory: Array<Book> = [
+//     { id: 10, title: 'The C Programming Language', author: 'K & R', available: true, category: Category.Software },
+//     { id: 11, title: 'Code Complete', author: 'Steve McConnell', available: true, category: Category.Software },
+//     { id: 12, title: '8-Bit Graphics with Cobol', author: 'A. B.', available: true, category: Category.Software },
+//     { id: 13, title: 'Cool autoexec.bat Scripts!', author: 'C. D.', available: true, category: Category.Software }
+// ];
+// const bookShelf = new Shelf<Book>();
+// inventory.forEach(book => bookShelf.add(book));
+// const firstBook = bookShelf.getFirst();
+// console.log(firstBook);
+//
+// const magazines: Array<Magazine> = [
+//     { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+//     { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
+//     { title: 'Five Points', publisher: 'GSU' }
+// ];
+// const magazineShelf = new Shelf<Magazine>();
+// magazines.forEach(mag => magazineShelf.add(mag));
+// const firstMag = magazineShelf.getFirst();
+// console.log(firstMag.title);
 
 
 // todo Task 07.01
