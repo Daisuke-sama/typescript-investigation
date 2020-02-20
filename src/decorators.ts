@@ -17,9 +17,38 @@ export function logger<TFunction extends Function>(target: TFunction): TFunction
     };
 
     newConstructor.prototype = Object.create(target.prototype);
-    newConstructor.prototype.printLibrarian = function() {
+    newConstructor.prototype.printLibrarian = function () {
         console.log(`Lib name: ${this.name}, Lib age: ${this.age}`);
     };
 
     return newConstructor as TFunction;
 }
+
+export function writable(isWritable: boolean) {
+    return function (target: Object, methodName: string, descriptor: PropertyDescriptor) {
+        console.log(`writable decorator is called with ${isWritable}`);
+        console.log(target, methodName, descriptor);
+
+        descriptor.writable = isWritable;
+
+        return descriptor;
+    }
+}
+
+export function timeout(ms: number = 0) {
+    return function (target: Object, methodName: string, descriptor: PropertyDescriptor) {
+        console.log(target);
+        console.log(descriptor);
+
+        const origMethod = descriptor.value;
+
+        descriptor.value = function (...args: any[]) {
+            setTimeout(() => {
+                origMethod.apply(this, args);
+            }, ms)
+        }
+
+        return descriptor;
+    }
+}
+
