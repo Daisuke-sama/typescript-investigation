@@ -175,3 +175,26 @@ export const logCategorySearch: LibMgrCallback = function (err: Error, titles: s
         titles.forEach(title => {console.log(title);});
     }
 };
+
+export function getBooksByCategoryPromise(category: Category): Promise<string[]> {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            try {
+                const titles: string[] = getBookTitlesByCategory(category);
+                if (titles.length > 0) {
+                    resolve(titles);
+                } else {
+                    throw new Error('No Books Found');
+                }
+            } catch (err) {
+                reject(err);
+            }
+        }, 2000);
+    });
+}
+
+export async function logSearchResults(category: Category) {
+    const titles: string[] = await getBooksByCategoryPromise(category);
+
+    console.log(titles);
+}

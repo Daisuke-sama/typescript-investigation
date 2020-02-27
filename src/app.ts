@@ -1,5 +1,5 @@
 import {Category} from "./enums";
-import {getBooksByCategory, logCategorySearch} from "./functions";
+import {getBooksByCategory, getBooksByCategoryPromise, logCategorySearch, logSearchResults} from "./functions";
 
 showHello('greeting', 'TypeScript');
 
@@ -10,10 +10,32 @@ function showHello(divName: string, name: string) {
 
 // ========================================================================
 
+// todo Task 09.03
+console.log('start');
+logSearchResults(Category.Javascript)
+    .then(console.log)
+    .catch(console.log);
+console.log('finish');
+
+
+// todo Task 09.02
+// getBooksByCategoryPromise(Category.Javascript)
+//     .then(titles => {
+//         console.log(titles);
+//         return titles.length;
+//     })
+//     .then(console.log)
+//     .catch(console.log);
+// getBooksByCategoryPromise(Category.Software)
+//     .then(console.log)
+//     .catch(console.log);
+// console.log('Finish');
+
+
 // todo Task 09.01
-getBooksByCategory(Category.Javascript, logCategorySearch);
-getBooksByCategory(Category.Software, logCategorySearch);
-console.log('Finish');
+// getBooksByCategory(Category.Javascript, logCategorySearch);
+// getBooksByCategory(Category.Software, logCategorySearch);
+// console.log('Finish');
 
 
 // todo Task 08.07
