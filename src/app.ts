@@ -1,8 +1,5 @@
-import {BookRequiredFields, CreateCustomerFunctionType, UpdatedBook} from "./types";
 import {Category} from "./enums";
-import {createCustomer} from "./functions";
-import {UniversityLibrarian} from "./classes";
-import Encyclopedia from "./classes/encyclopedia";
+import {getBooksByCategory, logCategorySearch} from "./functions";
 
 showHello('greeting', 'TypeScript');
 
@@ -13,10 +10,16 @@ function showHello(divName: string, name: string) {
 
 // ========================================================================
 
+// todo Task 09.01
+getBooksByCategory(Category.Javascript, logCategorySearch);
+getBooksByCategory(Category.Software, logCategorySearch);
+console.log('Finish');
+
+
 // todo Task 08.07
-const e = new Encyclopedia('Title', 2020, 10);
-e.copies = -10;
-console.log(e.copies);
+// const e = new Encyclopedia('Title', 2020, 10);
+// e.copies = -10;
+// console.log(e.copies);
 
 
 // todo Task 08.06
