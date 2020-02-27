@@ -13,16 +13,34 @@ function showHello(divName: string, name: string) {
 
 // ========================================================================
 
-// todo Task 08.01 08.02 08.03
-let universityLibrarian = new UniversityLibrarian();
-console.log(universityLibrarian);
+// todo Task 08.07
+const e = new Encyclopedia('Title', 2020, 10);
+e.copies = -10;
+console.log(e.copies);
+
+
+// todo Task 08.06
+// const obj = new UniversityLibrarian();
+// obj.name = 'Kate';
+// console.log(obj.name);
+
+
+// todo Task 08.05
+// const obj = new UniversityLibrarian();
+// obj.name = 'Kate';
+// obj.assistCustomer('Borya');
+
+
+// todo Task 08.01 08.02 08.03 08.04
+// let universityLibrarian = new UniversityLibrarian();
+// console.log(universityLibrarian);
 // universityLibrarian.name = 'Kate';
 // universityLibrarian['printLibrarian']();
 // universityLibrarian.assistFaculty = null;
 // universityLibrarian.teachCommunity = null;
 // console.log(universityLibrarian);
-const e = new Encyclopedia('Title', 2019, 5);
-e.printItem()
+// const e = new Encyclopedia('Title', 2019, 5);
+// e.printItem();
 
 // todo 07.05
 // const params: Parameters<CreateCustomerFunctionType> = ['Ann', 30];
